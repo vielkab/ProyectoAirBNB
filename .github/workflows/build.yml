@@ -1,4 +1,4 @@
-name: SonarQube
+name: SonarQubeAirBNB
 on:
   push:
     branches:
