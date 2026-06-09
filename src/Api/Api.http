@@ -1,0 +1,8 @@
+@Api_HostAddress = https://localhost:7270
+
+GET {{Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+GET {{Api_HostAddress}}/departamentos/
+Accept: application/json
