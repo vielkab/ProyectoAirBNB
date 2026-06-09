@@ -19,9 +19,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    var ServicioContexto = app.Services.GetRequiredService<ContextoAplicacion>();
-    ServicioContexto.Database.EnsureDeleted();
-    ServicioContexto.Database.EnsureCreated();
+    using var scope = app.Services.CreateScope();
+    var servicioContexto = scope.ServiceProvider.GetRequiredService<ContextoAplicacion>();
+    await servicioContexto.Database.EnsureDeletedAsync();
+    await servicioContexto.Database.EnsureCreatedAsync();
 }
 
 app.UseHttpsRedirection();
@@ -30,4 +31,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
